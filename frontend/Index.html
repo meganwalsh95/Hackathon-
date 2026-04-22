@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head>
+    <title>Happy Doggo Land</title>
+    <style>
+        body {font-family: Arial, sans-serif; margin: 40px;}
+        form, table { margin-bottom: 30px;}
+        input, select { margin: 5px; padding: 6px;}
+        table { border-collapse: collapse; width: 100%;}
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        button { padding:}
+    </style>
+</head>
+<body>
+    <h1>Doggie Database</h1>
+</body>
+<h2>Add a Dog</h2>
+<form action="/dogs" method="post">
+    <input name="name" placeholder="Name" required>
+    <input name="age" type="number" placeholder= "Age" required>
+    <input name="breed" placeholder="Breed" required>
+    <input name="gender" placeholder="Gender" required>
+    <input name="size" placeholder="Size" required>
+    <label>
+        Vaccinated
+        <input name="vaccinated" type="checkbox" value="true">
+    </label>
+    <label>
+        Adopted
+        <input name="adopted" type="checkbox" value="true"
+    </label>
+    <input name="notes" placeholder="Notes">
+    <button type="submit">Add Dog</button>
+</form>
+
+<h2>All Dogs</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Breed</th>
+        <th>Gender</th>
+        <th>Size</th>
+        <th>Vaccinated</th>
+        <th>Adopted</th>
+        <th>Notes</th>
+        <th>Action</th>
+    </tr>
+    {% for dog in dogs %}
+    <tr>
+        <td>{{ dog.name}}</td>
+        <td>{{ dog.age}}</td>
+        <td>{{dog.breed}}</td>
+        <td>{{dog.gender}}</td>
+        <td>{{dog.size}}</td>
+        <td>{{dog.vaccinated}}</td>
+        <td>{{dog.adopted}}</td>
+        <td>{{dog.notes}}</td>
+        <td>
+            <form action="/dogs/delete/{{dog.id}}" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
